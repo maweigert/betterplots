@@ -7,9 +7,12 @@ Some helper functions for creating decent plots (based on seaborn)
 
 `pip install git+https://github.com/maweigert/betterplots`
 
-## Usage 
+## Examples
 
-### `boxsplitsplot` 
+
+### `boxstripplot` 
+
+Provides a boxplot overlayed with a stripplot:
 
 
 ```python 
