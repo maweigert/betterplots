@@ -35,5 +35,5 @@ plt.show()
 
 ```
 
-![Image](images/example.jpg)
+![Image](images/example.png)
 
