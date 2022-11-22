@@ -17,24 +17,17 @@ np.random.seed(42)
 df = sns.load_dataset("penguins")
 
 
-plt.figure(num=1)
+plt.figure(num=1, figsize=(9,5))
 plt.ion()
 plt.clf()
 
-plt.subplot(1,3,1)
-
-sns.boxplot(data=df, x='species', y='body_mass_g', hue='sex', width=.5)
-
+plt.subplot(1,2,1)
+boxstripplot(data=df, x='species', y='body_mass_g', width=.3)
 sns.despine()
 
-plt.subplot(1,3,2)
-boxstripplot(data=df, x='species', y='body_mass_g', hue='sex', width=.3)
+plt.subplot(1,2,2)
+ax = boxstripplot(data=df, x='species', y='body_mass_g', hue='sex', width=.3)
 sns.despine()
 plt.legend(loc=(1,.8), frameon=False)
-
-# plt.subplot(1,3,3)
-# ax = boxstripplot(data=df, x='category', y='val',
-#                     width=.4, 
-#                     hue='condition')
-# sns.despine()
+plt.tight_layout()
 plt.show()

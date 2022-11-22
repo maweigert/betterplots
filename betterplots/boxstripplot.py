@@ -47,8 +47,6 @@ def mystripplot(
         p.scale_categorical(p.cat_axis, order=order, formatter=formatter)
 
 
-    print(p._nested_offsets(.8 * p._native_width, True))
-
     p._attach(ax)
 
     hue_order = p._palette_without_hue_backcompat(palette, hue_order)
@@ -131,8 +129,11 @@ def boxstripplot(x=None, y=None, data=None,
     box_kwargs['boxprops'].setdefault('alpha', box_alpha)
     strip_kwargs.setdefault('alpha', strip_alpha)
 
-    ax = sns.boxplot(data=data, x=x, y=y, width=width, hue=hue, order=order, hue_order=hue_order, orient=orient, color=color, palette=palette,ax=ax, **box_kwargs)
-    ax = mystripplot(data=data, x=x, y=y, width=width, size=size, hue=hue, dodge=False if hue is None else True, order=order, hue_order=hue_order, orient=orient, color=color, palette=palette, linewidth=linewidth, ax=ax, **strip_kwargs)
+
+    with warnings.catch_warnings():
+        warnings.filterwarnings('ignore')
+        ax = sns.boxplot(data=data, x=x, y=y, width=width, hue=hue, order=order, hue_order=hue_order, orient=orient, color=color, palette=palette,ax=ax, **box_kwargs)
+        ax = mystripplot(data=data, x=x, y=y, width=width, size=size, hue=hue, dodge=False if hue is None else True, order=order, hue_order=hue_order, orient=orient, color=color, palette=palette, linewidth=linewidth, ax=ax, **strip_kwargs)
     
     return ax
 
