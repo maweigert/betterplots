@@ -91,6 +91,7 @@ def boxstripplot(x=None, y=None, data=None,
                     strip_alpha = 0.5,
                     linewidth=0.5, 
                     fliersize=0,
+                    showmeans=False,
                      hue=None, order=None, hue_order=None, orient=None, color=None, palette=None,
                      ax=None,
                      box_kwargs=None, strip_kwargs=None):
@@ -129,16 +130,23 @@ def boxstripplot(x=None, y=None, data=None,
     box_kwargs.setdefault('boxprops', dict())
     box_kwargs.setdefault('whiskerprops', dict())
     box_kwargs.setdefault('capprops', dict())
+    box_kwargs.setdefault('meanprops', {"marker":"o",
+                                         "markerfacecolor":"none", 
+                                         "markeredgecolor":"black",
+                                         "markersize":"5"})
 
     box_kwargs['boxprops'].setdefault('alpha', box_alpha)
+    
     box_kwargs['whiskerprops'].setdefault('alpha', box_alpha)
     box_kwargs['capprops'].setdefault('alpha', box_alpha)
+
+
     strip_kwargs.setdefault('alpha', strip_alpha)
 
 
     with warnings.catch_warnings():
         warnings.filterwarnings('ignore')
-        ax = sns.boxplot(data=data, x=x, y=y, width=width, hue=hue, order=order, hue_order=hue_order, orient=orient, color=color, palette=palette, fliersize=fliersize, ax=ax, **box_kwargs)
+        ax = sns.boxplot(data=data, x=x, y=y, width=width, hue=hue, order=order, showmeans=showmeans, hue_order=hue_order, orient=orient, color=color, palette=palette, fliersize=fliersize, ax=ax, **box_kwargs)
         ax = mystripplot(data=data, x=x, y=y, width=width, size=size, hue=hue, dodge=False if hue is None else True, order=order, hue_order=hue_order, orient=orient, color=color, palette=palette, linewidth=linewidth, ax=ax, **strip_kwargs)
     
     return ax
