@@ -3,13 +3,13 @@ from .boxstripplot import boxstripplot
 
 
 
-def set_style(usetex=False):
+def set_style(usetex=False, font_size=12, legend_font_size=12):
     import matplotlib as mpl 
     mpl.rc('text',usetex=usetex)
     mpl.rc('font',family='serif')
     mpl.rc('font',serif=['Palatino'])
-    mpl.rc('font',size=12)
-    mpl.rc('legend',fontsize=12)
+    mpl.rc('font',size=font_size)
+    mpl.rc('legend',fontsize=legend_font_size)
 
     if usetex:
         print('in case latex is not working, make sue that the following packages are installed:')
