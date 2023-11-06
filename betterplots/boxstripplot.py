@@ -29,7 +29,8 @@ def mystripplot(
     hue_norm=None, native_scale=False, formatter=None, legend="auto",
     ax=None, **kwargs
 ):
-
+    seed = kwargs.get("seed", 42)
+    np.random.seed(seed)
     p = _MyCategoricalPlotterNew(
         width,
         data=data,
@@ -94,7 +95,7 @@ def boxstripplot(x=None, y=None, data=None,
                     showmeans=False,
                      hue=None, order=None, hue_order=None, orient=None, color=None, palette=None,
                      ax=None,
-                     box_kwargs=None, strip_kwargs=None):
+                     box_kwargs=None, strip_kwargs=None, violin=False, saturation=None):
     """
     plots a half-box plot with a regular boxplot and a stripplot next to each other
       
@@ -134,20 +135,27 @@ def boxstripplot(x=None, y=None, data=None,
                                          "markerfacecolor":"none", 
                                          "markeredgecolor":"black",
                                          "markersize":"5"})
+    box_kwargs.setdefault('medianprops', {
+        "color": "black",
+        "alpha": 0.35,
+    }
+    )
 
-    box_kwargs['boxprops'].setdefault('alpha', box_alpha)
+    box_kwargs['boxprops'].setdefault('alpha', .7)
     
-    box_kwargs['whiskerprops'].setdefault('alpha', box_alpha)
-    box_kwargs['capprops'].setdefault('alpha', box_alpha)
-
+    box_kwargs['whiskerprops'].setdefault('alpha', .7)
+    box_kwargs['capprops'].setdefault('alpha', .7)
+    if saturation is not None:
+        box_kwargs['saturation'] = saturation
 
     strip_kwargs.setdefault('alpha', strip_alpha)
 
 
     with warnings.catch_warnings():
         warnings.filterwarnings('ignore')
-        ax = sns.boxplot(data=data, x=x, y=y, width=width, hue=hue, order=order, showmeans=showmeans, hue_order=hue_order, orient=orient, color=color, palette=palette, fliersize=fliersize, ax=ax, **box_kwargs)
+        if not violin:
+            ax = sns.boxplot(data=data, x=x, y=y, width=width, hue=hue, order=order, showmeans=showmeans, hue_order=hue_order, orient=orient, color=color, palette=palette, fliersize=fliersize, ax=ax, **box_kwargs)
+        else:
+            ax = sns.violinplot(data=data, x=x, y=y, width=width, hue=hue, order=order, showmeans=showmeans, hue_order=hue_order, orient=orient, color=color, palette=palette, fliersize=fliersize, ax=ax, **box_kwargs)
         ax = mystripplot(data=data, x=x, y=y, width=width, size=size, hue=hue, dodge=False if hue is None else True, order=order, hue_order=hue_order, orient=orient, color=color, palette=palette, linewidth=linewidth, ax=ax, **strip_kwargs)
-    
     return ax
-
