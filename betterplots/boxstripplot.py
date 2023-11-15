@@ -141,10 +141,9 @@ def boxstripplot(x=None, y=None, data=None,
     }
     )
 
-    box_kwargs['boxprops'].setdefault('alpha', .7)
-    
-    box_kwargs['whiskerprops'].setdefault('alpha', .7)
-    box_kwargs['capprops'].setdefault('alpha', .7)
+    box_kwargs['boxprops'].setdefault('alpha', box_alpha)
+    box_kwargs['whiskerprops'].setdefault('alpha', box_alpha)
+    box_kwargs['capprops'].setdefault('alpha', box_alpha)
     if saturation is not None:
         box_kwargs['saturation'] = saturation
 

@@ -1,8 +1,11 @@
 import numpy as np
 import pandas as pd
-from betterplots import boxstripplot
+from betterplots import boxstripplot, set_style
 import matplotlib.pyplot as plt 
 import seaborn as sns  
+
+
+set_style() 
 
 np.random.seed(42)
 

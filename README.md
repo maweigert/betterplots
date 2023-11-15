@@ -7,6 +7,16 @@ Some helper functions for creating decent plots (based on seaborn)
 
 `pip install git+https://github.com/maweigert/betterplots`
 
+
+install `Palatino`
+
+```
+mkdir -p ~/.local/share/fonts
+cp 
+sudo fc-cache -fv
+rm -fr ~/.cache/matplotlib
+```
+
 ## Examples
 
 

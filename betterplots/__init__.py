@@ -1,6 +1,7 @@
 
-from .boxstripplot import boxstripplot
+from pathlib import Path
 
+from .boxstripplot import boxstripplot
 
 
 def set_style(usetex=False, font_size=12, legend_font_size=12):
