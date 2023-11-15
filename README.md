@@ -12,9 +12,9 @@ install `Palatino`
 
 ```
 mkdir -p ~/.local/share/fonts
-cp 
+wget --directory-prefix ~/.local/share/fonts https://raw.githubusercontent.com/maweigert/betterplots/main/betterplots/fonts/Palatino.ttf
 sudo fc-cache -fv
-rm -fr ~/.cache/matplotlib
+rm -rf ~/.cache/matplotlib
 ```
 
 ## Examples
