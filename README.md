@@ -8,7 +8,7 @@ Some helper functions for creating decent plots (based on seaborn)
 `pip install git+https://github.com/maweigert/betterplots`
 
 
-install `Palatino`
+### Install `Palatino`
 
 ```
 mkdir -p ~/.local/share/fonts
