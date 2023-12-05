@@ -23,7 +23,7 @@ setup(
 
     install_requires=[
         'numpy',
-        'seaborn>=0.12.0',
+        'seaborn>=0.13.0',
     ],
 
 )
