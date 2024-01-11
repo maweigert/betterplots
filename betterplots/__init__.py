@@ -1,14 +1,19 @@
 
 from pathlib import Path
-
 from .boxstripplot import boxstripplot
+from .fonts import load_fonts
 
 
-def set_style(usetex=False, font_size=12, legend_font_size=12):
+load_fonts()
+
+def set_style(usetex=False, serif=True, font_size=12, legend_font_size=12):
     import matplotlib as mpl 
     mpl.rc('text',usetex=usetex)
-    mpl.rc('font',family='serif')
-    mpl.rc('font',serif=['Palatino'])
+    # mpl.rc('font',family='serif')
+    # mpl.rc('font',serif=['Palatino'])
+    mpl.rcParams['font.family'] = "serif" if serif else "sans-serif"
+    mpl.rcParams['font.serif'] = ["Palatino"]
+    mpl.rcParams['font.sans-serif'] = ["Myriad Pro"]
     mpl.rc('font',size=font_size)
     mpl.rc('legend',fontsize=legend_font_size)
 

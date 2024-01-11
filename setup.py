@@ -25,5 +25,5 @@ setup(
         'numpy',
         'seaborn>=0.13.0',
     ],
-
+    package_data={"betterplots":['fonts/*']},
 )
