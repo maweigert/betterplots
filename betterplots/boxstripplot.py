@@ -35,7 +35,7 @@ def mystripplot(
     color=None,
     palette=None,
     size=5,
-    edgecolor=None,
+    edgecolor="none",
     linewidth=0,
     hue_norm=None,
     log_scale=None,
