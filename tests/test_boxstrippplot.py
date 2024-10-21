@@ -25,7 +25,8 @@ plt.ion()
 plt.clf()
 
 plt.subplot(1,2,1)
-boxstripplot(data=df, x='species', y='body_mass_g', width=.3)
+boxstripplot(data=df, x='species', y='body_mass_g', width=.3, 
+             strip_kwargs=dict(edgecolor='none', alpha=.5))
 sns.despine()
 
 plt.subplot(1,2,2)

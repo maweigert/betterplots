@@ -27,9 +27,12 @@ def mystripplot(
     width=.1, 
     data=None, *, x=None, y=None, hue=None, order=None, hue_order=None,
     dodge=False, orient=None, color=None, palette=None,
-    size=5, edgecolor="gray", linewidth=0,
+    size=5, 
+    edgecolor=None, 
+    linewidth=0,
     hue_norm=None, log_scale=None, native_scale=False, formatter=None, legend="auto",
-    ax=None, **kwargs
+    ax=None,
+    **kwargs
 ):
 
     p = _MyCategoricalPlotter(
@@ -59,8 +62,10 @@ def mystripplot(
 
     p.map_hue(palette=palette, order=hue_order, norm=hue_norm)
     color = _default_color(ax.scatter, hue, color, kwargs)
-    edgecolor = p._complement_color(edgecolor, color, p._hue_map)
-
+    
+    if edgecolor is None:
+        edgecolor = p._complement_color(edgecolor, color, p._hue_map)
+    
     kwargs.setdefault("zorder", 3)
     size = kwargs.get("s", size)
 
@@ -155,5 +160,7 @@ def boxstripplot(x=None, y=None, data=None,
             ax = sns.boxplot(data=data, x=x, y=y, width=width, hue=hue, order=order, showmeans=showmeans, hue_order=hue_order, orient=orient, color=color, palette=palette, fliersize=fliersize, ax=ax, **box_kwargs)
         else:
             ax = sns.violinplot(data=data, x=x, y=y, width=width, hue=hue, order=order, showmeans=showmeans, hue_order=hue_order, orient=orient, color=color, palette=palette, fliersize=fliersize, ax=ax, **box_kwargs)
-        ax = mystripplot(data=data, x=x, y=y, width=width, size=size, hue=hue, dodge=False if hue is None else True, order=order, hue_order=hue_order, orient=orient, color=color, palette=palette, linewidth=linewidth, ax=ax, **strip_kwargs)
+        ax = mystripplot(data=data, x=x, y=y, width=width, size=size,
+                         hue=hue, dodge=False if hue is None else True, 
+                         order=order, hue_order=hue_order, orient=orient, color=color, palette=palette, linewidth=linewidth, ax=ax, **strip_kwargs)
     return ax
