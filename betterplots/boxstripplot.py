@@ -234,6 +234,7 @@ def boxstripplot(
             palette=palette,
             linewidth=linewidth,
             ax=ax,
+            legend=None,
             **strip_kwargs
         )
     return ax
