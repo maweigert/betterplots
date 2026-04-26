@@ -1,11 +1,10 @@
 import numpy as np
-import pandas as pd
 from betterplots import boxstripplot, set_style
-import matplotlib.pyplot as plt 
-import seaborn as sns  
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 
-set_style() 
+set_style()
 
 np.random.seed(42)
 
@@ -20,18 +19,23 @@ np.random.seed(42)
 df = sns.load_dataset("penguins")
 
 
-plt.figure(num=1, figsize=(9,5))
+plt.figure(num=1, figsize=(9, 5))
 plt.ion()
 plt.clf()
 
-plt.subplot(1,2,1)
-boxstripplot(data=df, x='species', y='body_mass_g', width=.3, 
-             strip_kwargs=dict(edgecolor='none', alpha=.5))
+plt.subplot(1, 2, 1)
+boxstripplot(
+    data=df,
+    x="species",
+    y="body_mass_g",
+    width=0.3,
+    strip_kwargs=dict(edgecolor="none", alpha=0.2),
+)
 sns.despine()
 
-plt.subplot(1,2,2)
-ax = boxstripplot(data=df, x='species', y='body_mass_g', hue='sex', width=.3)
+plt.subplot(1, 2, 2)
+ax = boxstripplot(data=df, x="species", y="body_mass_g", hue="sex", width=0.3)
 sns.despine()
-plt.legend(loc=(1,.8), frameon=False)
+plt.legend(loc=(1, 0.8), frameon=False)
 plt.tight_layout()
 plt.show()
