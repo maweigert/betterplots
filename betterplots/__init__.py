@@ -28,7 +28,7 @@ def set_style(
     legend_font_size=10,
     label_size=10,
     tick_size=10,
-    colors: Literal["mw", "tab10", None] = "mw",
+    colors: Literal["mw", "tab10", None] = "tab10",
 ):
     import matplotlib as mpl
 
@@ -37,12 +37,17 @@ def set_style(
     # mpl.rc('font',serif=['Palatino'])
     mpl.rcParams["font.family"] = "serif" if serif else "sans-serif"
     mpl.rcParams["font.serif"] = ["Palatino"]
-    mpl.rcParams["font.sans-serif"] = ["Neue Haas Grotesk Display Pro", "Myriad Pro"]
+    mpl.rcParams["font.sans-serif"] = [
+        "Inter 18pt",
+        "Myriad Pro",
+        "Neue Haas Grotesk Display Pro",
+    ]
     mpl.rc("font", size=font_size)
     mpl.rc("legend", fontsize=legend_font_size)
     mpl.rc("axes", labelsize=label_size)
     mpl.rc("xtick", labelsize=tick_size)
     mpl.rc("ytick", labelsize=tick_size)
+    mpl.rcParams["axes.titleweight"] = "semibold"
 
     if colors is None:
         colors = "tab10"

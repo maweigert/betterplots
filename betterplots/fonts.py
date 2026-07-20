@@ -16,7 +16,13 @@ def load_fonts():
     fixed = []
     for e in ttflist:
         if e.fname in bundled:
-            w = 700 if "Bold" in Path(e.fname).name else 400
+            name = Path(e.fname).name.lower()
+            if "semibold" in name:
+                w = 600
+            elif "bold" in name:
+                w = 700
+            else:
+                w = 400
             e = dataclasses.replace(e, weight=w)
         fixed.append(e)
     # prepend bundled entries so they win ties against system fonts
