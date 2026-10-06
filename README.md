@@ -19,48 +19,23 @@ bp.set_style()
 
 `pip install git+https://github.com/maweigert/betterplots`
 
-Requires Python 3.9 or newer. Dependencies, including `tol-colors`, are installed
-automatically.
+Requires Python 3.9 or newer and uses  `tol-colors` ([Paul Tols](https://sronpersonalpages.nl/~pault/) nice colour schemes)
 
 ### Styling
 
-Call `set_style()` before creating figures. It uses sans-serif text without
-LaTeX, with Open Sans and DejaVu Sans as the fallback. New Matplotlib and Seaborn
-plots have white backgrounds, no grid, no top or right spines, and frameless
-legends. Explicit plot arguments can override these defaults.
+Call `set_style()` before creating Matplotlib or Seaborn figures.
 
-Categorical colors default to `tol_light`. Use `set_style(colors="mw")` for the
-custom palette or `set_style(colors="tol_muted")` for Paul Tol's muted palette.
-`boxstripplot()` uses the active palette unless an explicit `palette` is passed.
-All categorical palettes from `tol-colors` are available with the `tol_` prefix,
-including `tol_bright`, `tol_vibrant`, `tol_high_contrast`,
-`tol_medium_contrast`, `tol_pale`, `tol_dark`, `tol_light`, and `tol_land_cover`.
-Access the color lists through `betterplots.PALETTES` to pass them explicitly
-to Seaborn, for example `sns.barplot(..., palette=PALETTES["tol_muted"])`.
+- Default appearance with sans-serif text without LaTeX, white backgrounds, no grid, no top/right spines, frameless legends
+- Default palette `tol_light`; choose `colors="tol_muted"`, other `tol_` palettes, `"tab10"`, or `"mw"`
+- `boxstripplot()` inherits the active palette; pass `palette=` to override it
+- `darkmode=True` for dark backgrounds; call `set_style()` to restore light defaults for new figures
+- Independent font sizes with `font_size=12`, `label_size=10`, `tick_size=10`, and `legend_font_size=10`
+- `serif=True` for serif text; `usetex=True` for LaTeX rendering
+- `rc={"lines.linewidth": 2}` for arbitrary Matplotlib settings, applied last; explicit plot arguments take precedence
 
-Use `set_style(darkmode=True)` for dark backgrounds with light text, ticks,
-and spines. Calling `set_style()` again restores the light defaults for new
-figures.
+LaTeX requires a TeX installation with `newpx`, `opensans`, `mathtools`, and `bm`.
 
-Font sizes can be set independently. Pass `rc` for additional Matplotlib
-settings, which take precedence over the style defaults:
 
-```python
-set_style(
-    darkmode=True,
-    font_size=14,
-    label_size=12,
-    tick_size=11,
-    legend_font_size=11,
-    rc={"font.sans-serif": ["DejaVu Sans"], "lines.linewidth": 2},
-)
-```
-
-Use `set_style(serif=True)` for DejaVu Serif, or `set_style(usetex=True)` to
-enable LaTeX with NewPX for serif text and mathematics and Open Sans for
-sans-serif text. Install a TeX distribution that includes the
-`newpx`, `opensans`, `mathtools`, and `bm` packages. Matplotlib may require
-additional backend tools such as `dvipng` or Ghostscript.
 
 ## Examples
 
