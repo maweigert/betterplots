@@ -75,3 +75,20 @@ plt.show()
 ```
 
 ![Image](images/example.png)
+
+## Additional styling
+
+Use `rc` to override any [Matplotlib rcParams setting](https://matplotlib.org/stable/users/explain/customizing.html),
+including backgrounds, line widths, and legend appearance. Overrides are applied
+after the style defaults.
+
+```python
+set_style(
+    darkmode=True,
+    rc={
+        "figure.facecolor": "#151520",
+        "axes.facecolor": "#151520",
+        "lines.linewidth": 2,
+    },
+)
+```
