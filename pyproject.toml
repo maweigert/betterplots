@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "betterplots"
+version = "0.1.0"
+description = "better plots"
+readme = "README.md"
+requires-python = ">=3.9"
+license = "BSD-3-Clause"
+authors = [{name = "Martin Weigert", email = "martin.weigert@epfl.ch"}]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering",
+    "Programming Language :: Python :: 3",
+]
+dependencies = [
+    "numpy",
+    "seaborn>=0.13.0",
+    "tol-colors>=2.0",
+]
+
+[tool.setuptools.packages.find]
+include = ["betterplots*"]

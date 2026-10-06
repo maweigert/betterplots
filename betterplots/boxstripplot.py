@@ -147,7 +147,7 @@ def boxstripplot(
         ax = plt.gca()
 
     if palette is None:
-        palette = sns.color_palette("tab10")
+        palette = sns.color_palette()
 
     if box_kwargs is None:
         box_kwargs = {}

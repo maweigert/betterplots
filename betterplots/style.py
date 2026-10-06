@@ -1,4 +1,6 @@
-from typing import Literal
+from typing import Optional
+
+import tol_colors as tc
 
 PALETTES = {
     "mw": ["#4B6584", "#7A6FAF", "#B99B52", "#5F8F7A", "#A45A6A", "#5B8FA8"],
@@ -14,20 +16,61 @@ PALETTES = {
         "#bcbd22",
         "#17becf",
     ],
+    **{f"tol_{name}": list(palette) for name, palette in tc.colorsets.items()},
 }
 
 
 def set_style(
-    usetex=True,
-    serif=True,
+    usetex=False,
+    serif=False,
     font_size=12,
     legend_font_size=10,
     label_size=10,
     tick_size=10,
-    colors: Literal["mw", "tab10", None] = "tab10",
+    colors: Optional[str] = "tol_light",
+    darkmode=False,
+    rc=None,
 ):
+    """Set global plot defaults for figures created with Matplotlib and Seaborn.
+
+    Font sizes for legends, labels, and ticks are independent of font_size.
+    Use darkmode for dark backgrounds and light text. Apply rc overrides last.
+    """
     import matplotlib as mpl
 
+    background = "#202020" if darkmode else "white"
+    foreground = "#eeeeee" if darkmode else "black"
+    mpl.rcParams.update(
+        {
+            "axes.facecolor": background,
+            "figure.facecolor": background,
+            "savefig.facecolor": "auto",
+            "savefig.edgecolor": "auto",
+            "text.color": foreground,
+            "axes.labelcolor": foreground,
+            "axes.edgecolor": foreground,
+            "axes.titlecolor": "auto",
+            "xtick.color": foreground,
+            "ytick.color": foreground,
+            "xtick.labelcolor": "inherit",
+            "ytick.labelcolor": "inherit",
+            "patch.edgecolor": foreground,
+            "grid.color": "#555555" if darkmode else "#b0b0b0",
+            "axes.grid": False,
+            "axes.spines.left": True,
+            "axes.spines.bottom": True,
+            "axes.spines.top": False,
+            "axes.spines.right": False,
+            "axes.linewidth": 0.8,
+            "xtick.direction": "out",
+            "ytick.direction": "out",
+            "xtick.top": False,
+            "ytick.right": False,
+            "legend.frameon": False,
+            "legend.labelcolor": None,
+            "legend.facecolor": "inherit",
+        }
+    )
     mpl.rc("text", usetex=usetex)
     mpl.rcParams["font.family"] = "serif" if serif else "sans-serif"
     mpl.rcParams["font.serif"] = ["DejaVu Serif"]
@@ -40,7 +83,7 @@ def set_style(
     mpl.rcParams["axes.titleweight"] = "semibold"
 
     if colors is None:
-        colors = "tab10"
+        colors = "tol_light"
     if colors not in PALETTES:
         raise ValueError(
             f"colors must be one of {list(PALETTES)} or None, got {colors!r}"
@@ -59,9 +102,5 @@ def set_style(
     else:
         mpl.rcParams["text.latex.preamble"] = ""
 
-    # xtick.major.size : 5
-    # xtick.minor.size : 3
-    # ytick.major.size : 5
-    # ytick.minor.size : 3
-    # axes.linewidth : 0.8
-    # legend.handlelength : 2.0
+    if rc is not None:
+        mpl.rcParams.update(rc)
