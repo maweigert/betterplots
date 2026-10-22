@@ -27,7 +27,7 @@ def set_style(
     legend_font_size=10,
     label_size=10,
     tick_size=10,
-    colors: Optional[str] = "tol_light",
+    colors: Optional[str] = "tab10",
     darkmode=False,
     rc=None,
 ):
